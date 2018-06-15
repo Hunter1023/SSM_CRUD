@@ -42,5 +42,27 @@
 </div>
 </body>
 <script type="text/javascript" src="${APP_PATH}/js/emps.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/paging.js"></script>
+<script type="text/javascript">
+    // 1.页面加载完成以后，直接去发送一个AJAX请求，要到分页数据
+    $(function () {
+        toPage(1);
+    });
 
+    function toPage(pageNum) {
+        $.ajax({
+            url: "emps",
+            data: "pageNum=" + pageNum,
+            type: "GET",
+            success: function (result) {
+                //1.解析并显示员工数据
+                build_emps_table(result);
+                //2.解析并显示分页信息
+                build_page_info(result);
+                //3.解析并显示分页条数据
+                build_page_nav(result);
+            }
+        });
+    }
+</script>
 </html>
