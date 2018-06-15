@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <title>增删改查小项目</title>
 <% pageContext.setAttribute("APP_PATH", request.getContextPath());%>
 <%--引入jQuery--%>

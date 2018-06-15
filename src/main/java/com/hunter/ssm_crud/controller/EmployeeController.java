@@ -6,9 +6,7 @@ import com.hunter.ssm_crud.bean.Message;
 import com.hunter.ssm_crud.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -22,8 +20,8 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     /**
-     *
-     * @param pageNum
+     * 查询员工数据（分页查询）
+     * @param pageNum 页码
      * @return 利用jackson依赖将返回的对象转换为JSON字符串
      */
     @RequestMapping("/emps")
@@ -36,17 +34,11 @@ public class EmployeeController {
         return Message.success().add("pageInfo", pageInfo);
     }
 
-
-    /**
-     * 查询员工数据（分页查询）
-     */
-//    @RequestMapping("/emps")
-    public String getEmps(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                          Model model) {
-
-        PageInfo<Employee> pageInfo = employeeService.getAll(pageNum);
-        model.addAttribute("pageInfo", pageInfo);
-
-        return "list";
+    @RequestMapping(value = "/emp", method = RequestMethod.POST)
+    // 由于表单传输的标签内容，标签的name都和Employee的属性名相同，因此参数可以直接传对象
+    @ResponseBody
+    public Message saveEmp(Employee employee) {
+        employeeService.saveEmp(employee);
+        return Message.success();
     }
 }

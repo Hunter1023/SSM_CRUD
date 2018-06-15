@@ -24,4 +24,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         return new PageInfo<Employee>(emps, 5);
     }
+
+    /**
+     * 员工保存
+     * @param employee 传入员工对象
+     */
+    @Override
+    public void saveEmp(Employee employee) {
+        employeeMapper.insertSelective(employee);
+    }
 }

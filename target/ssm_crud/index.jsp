@@ -5,6 +5,9 @@
     <%@include file="jsp/include/head.jsp" %>
 </head>
 <body>
+<%--添加模态框--%>
+<%@include file="jsp/include/modal.jsp" %>
+
 <%--搭建显示页面--%>
 <div class="container">
     <%--标题--%>
@@ -16,7 +19,7 @@
     <%--按钮--%>
     <div class="row">
         <div class="col-md-4 col-md-offset-8">
-            <button class="btn btn-primary">新增</button>
+            <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
             <button class="btn btn-danger">删除</button>
         </div>
     </div>
@@ -42,5 +45,6 @@
 </div>
 </body>
 <script type="text/javascript" src="${APP_PATH}/js/emps.js"></script>
-
+<script type="text/javascript" src="${APP_PATH}/js/paging.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/index.js"></script>
 </html>

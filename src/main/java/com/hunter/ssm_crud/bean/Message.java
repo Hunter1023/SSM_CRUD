@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class Message {
     //状态码
-    private int code;
+//    private int code;
     //提示信息
     private String message;
 
@@ -17,14 +17,14 @@ public class Message {
 
     public static Message success() {
         Message result = new Message();
-        result.setCode(100);
+//        result.setCode(100);
         result.setMessage("处理成功！");
         return result;
     }
 
     public static Message fail() {
         Message result = new Message();
-        result.setCode(200);
+//        result.setCode(200);
         result.setMessage("处理失败！");
         return result;
     }
@@ -34,13 +34,13 @@ public class Message {
         return this;
     }
 
-    public int getCode() {
+  /*  public int getCode() {
         return code;
     }
 
     public void setCode(int code) {
         this.code = code;
-    }
+    }*/
 
     public String getMessage() {
         return message;

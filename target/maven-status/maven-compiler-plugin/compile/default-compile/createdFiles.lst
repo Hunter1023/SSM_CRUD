@@ -1,0 +1,3 @@
+com\hunter\ssm_crud\service\DepartmentService.class
+com\hunter\ssm_crud\service\impl\DepartmentServiceImpl.class
+com\hunter\ssm_crud\controller\DepartmentController.class

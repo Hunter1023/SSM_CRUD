@@ -6,4 +6,6 @@ import com.hunter.ssm_crud.bean.Employee;
 public interface EmployeeService {
 
     PageInfo<Employee> getAll(Integer pageNum);
+
+    void saveEmp(Employee employee);
 }
