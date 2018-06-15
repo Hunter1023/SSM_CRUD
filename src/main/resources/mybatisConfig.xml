@@ -15,6 +15,9 @@
     </typeAliases>
 
     <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--请求的页码超出边界时(用户干预)，能正常显示; < 1时，显示首页; 超出最大页数，显示尾页 -->
+            <property name="reasonable" value="true"/>
+        </plugin>
     </plugins>
 </configuration>

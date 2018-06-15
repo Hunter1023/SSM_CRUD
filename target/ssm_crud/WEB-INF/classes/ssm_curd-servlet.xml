@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--Spring MVC的配置文件，网站跳转逻辑的控制-->
+
+    <!--只扫描Controller注解-->
+    <context:component-scan base-package="com.hunter.ssm_crud.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--=======================配置视图解析器，方便页面返回==================================-->
+    <!--<bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+            </list>
+        </property>
+    </bean>-->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/" />
+        <property name="suffix" value=".jsp" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
+
+    <!--==========================两个标准配置================================-->
+    <!--将springmvc不能处理的请求（静态资源）交给tomcat-->
+    <mvc:default-servlet-handler/>
+    <!--能支持springMVC更高级一些的功能，映射动态请求，JSR303校验，快捷的AJAX请求，....-->
+    <mvc:annotation-driven/>
+
+</beans>

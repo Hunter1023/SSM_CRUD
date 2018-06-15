@@ -28,6 +28,9 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.1.4" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
         </element>
       </element>

@@ -28,6 +28,15 @@ public class Employee {
         this.department = department;
     }
 
+    public Employee(Integer empId, String empName, String gender,
+                    String email, Integer dId) {
+        this.empId = empId;
+        this.empName = empName;
+        this.gender = gender;
+        this.email = email;
+        this.dId = dId;
+    }
+
     public Integer getEmpId() {
         return empId;
     }

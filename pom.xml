@@ -71,6 +71,13 @@
             <version>5.1.4</version>
         </dependency>
 
+        <!--返回JSON数据-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${json-version}</version>
+        </dependency>
+
         <!-- JSP相关 -->
         <dependency>
             <groupId>javax.servlet</groupId>
