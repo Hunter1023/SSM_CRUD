@@ -68,7 +68,9 @@ function reset_form(ele) {
 }
 
 // 查出所有部门信息并显示在下拉列表中
-function getDepts() {
+function getDepts(ele) {
+    //清空之前下拉列表的值
+    $(ele).empty();
     $.ajax({
         url: "depts",
         type: "GET",
@@ -77,7 +79,7 @@ function getDepts() {
             $.each(result.extend.depts, function () {
                 var optionEle = $("<option></option>")
                     .append(this.deptName).attr("value", this.deptId);
-                optionEle.appendTo("#dept_add_select");
+                optionEle.appendTo(ele);
             })
         }
     });
