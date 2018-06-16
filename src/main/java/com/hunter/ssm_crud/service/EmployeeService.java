@@ -10,4 +10,6 @@ public interface EmployeeService {
     void saveEmp(Employee employee);
 
     boolean checkUser(String empName);
+
+    Employee getEmp(Integer id);
 }

@@ -28,6 +28,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * 按照员工id查询员工
+     * @param id 员工id
+     * @return 员工对象
+     */
+    @Override
+    public Employee getEmp(Integer id) {
+
+        return employeeMapper.selectByPrimaryKey(id);
+    }
+
+    /**
      * 员工保存
      *
      * @param employee 传入员工对象

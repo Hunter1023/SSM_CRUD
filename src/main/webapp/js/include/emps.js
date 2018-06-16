@@ -11,6 +11,9 @@ function build_emps_table(result) {
         var deptNameTd = $("<td></td>").append(item.department.deptName);
         var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
+        // 为编辑按钮添加自定义的属性，来表示当前员工的id
+        editBtn.attr("edit-id", item.empId);
+
         var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
         var btnTd = $("<td></td>").append(editBtn).append(delBtn);

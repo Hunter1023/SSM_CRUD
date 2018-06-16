@@ -25,7 +25,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     /**
-     * 查询员工数据（分页查询）
+     * 查询员工列表（分页查询）
      *
      * @param pageNum 页码
      * @return 利用jackson依赖将返回的对象转换为JSON字符串
@@ -38,6 +38,14 @@ public class EmployeeController {
 
 
         return Message.success().add("pageInfo", pageInfo);
+    }
+
+    @RequestMapping(value="/emp/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Message getEmp(@PathVariable("id") Integer id){
+        Employee employee = employeeService.getEmp(id);
+
+        return Message.success().add("emp", employee);
     }
 
     /**
@@ -74,7 +82,7 @@ public class EmployeeController {
     }
 
     /**
-     * 后端表单校验
+     * ajax后端表单校验
      *
      * @param empName 传入的员工名
      * @return 返回添加操作的结果

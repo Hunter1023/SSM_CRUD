@@ -13,7 +13,7 @@ $(function () {
     toPage(1);
 });
 
-// 添加新增按钮的鼠标监听
+// 添加主页面新增按钮的鼠标监听
 $("#emp_add_modal_btn").click(function () {
     //重置表单的数据、样式
     reset_form("#empAddModal form");
@@ -23,12 +23,25 @@ $("#emp_add_modal_btn").click(function () {
     $("#empAddModal").modal();
 });
 
-//添加姓名输入的 键盘监听
+//添加主页面 所有编辑按钮 的鼠标监听, 因为在按钮创建之前就绑定了click，所以绑定不上
+// .live(): 可以为以后添加进来的元素绑定方法（新版jQuery没有live方法，用on替代）
+$(document).on("click", ".edit_btn", function () {
+    //加载所有的部门选项
+    getDepts("#dept_update_select");
+    //根据id加载员工信息
+    getEmp($(this).attr("edit-id"));
+
+    //弹出模态框
+    $("#empUpdateModal").modal();
+});
+
+
+//添加模态框 姓名输入 的键盘监听
 $("#empName_add_input").keyup(function () {
     validate_empName("#empName_add_input");
 });
 
-//添加保存按钮的鼠标监听
+//添加模态框 保存按钮 的鼠标监听
 $("#emp_save_btn").click(function () {
     // 判断“用户名是否已被使用”的校验是否成功
     if ($("#emp_save_btn").attr("ajax-va") == "error") {
@@ -42,16 +55,20 @@ $("#emp_save_btn").click(function () {
     post_emp_form();
 });
 
-//添加编辑按钮的鼠标监听, 因为在按钮创建之前就绑定了click，所以绑定不上
-// .live(): 可以为以后添加进来的元素绑定方法（新版jQuery没有live方法，用on替代）
-$(document).on("click", ".edit_btn", function () {
-    //发出ajax请求，查出员工、部门信息，显示在模态框
 
+//添加模态框 更新按钮 的鼠标监听
+$("#emp_update_btn").click(function () {
 
+    //校验邮箱
+    var email = $("#email_update_input").val();
+    var regEmail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/;
+    if (!regEmail.test(email)) {
+        show_validate_msg("#email_update_input", "error", "邮箱格式不正确");
+        return false;
+    } else {
+        show_validate_msg("#email_update_input", "success", "");
+    }
 
-    getDepts("#dept_update_select");
+    //发送ajax请求，保存更新的员工数据
 
-
-    //弹出模态框
-    $("#empUpdateModal").modal();
 });

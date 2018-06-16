@@ -12,8 +12,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">姓名</label>
                         <div class="col-sm-9">
-                            <input type="text" name="empName" class="form-control" id="empName_update_input" placeholder="姓名">
-                            <span class="help-block"></span>
+                            <p class="form-control-static" id="empName_update_static"></p>
                         </div>
                     </div>
                     <div class="form-group">

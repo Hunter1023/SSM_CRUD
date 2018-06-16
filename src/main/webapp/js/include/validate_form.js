@@ -21,7 +21,7 @@ function validate_add_form() {
     return true;
 }
 
-// 校验员工名
+// ajax校验员工名
 function validate_empName(ele) {
     //发送ajax请求校验用户名是否可用
     var empName = $(ele).val();
@@ -30,10 +30,10 @@ function validate_empName(ele) {
         data: "empName=" + empName,
         type: "POST",
         success: function (result) {
-            if (result.message == "success"){
+            if (result.message == "success") {
                 show_validate_msg(ele, "success", "该姓名可用");
                 $("#emp_save_btn").attr("ajax-va", "success");
-            }else if(result.message == "error"){
+            } else if (result.message == "error") {
                 show_validate_msg(ele, "error", result.extend.va_msg);
                 $("#emp_save_btn").attr("ajax-va", "error");
             }
@@ -67,6 +67,22 @@ function reset_form(ele) {
     $(ele).find(".help-block").text("");
 }
 
+//查询员工信息显示在模态框中
+function getEmp(id) {
+
+    $.ajax({
+        url: "emp/" + id,
+        type: "GET",
+        success: function (result) {
+            var empData = result.extend.emp;
+            $("#empName_update_static").text(empData.empName);
+            $("#email_update_input").val(empData.email);
+            $("#empUpdateModal input[name=gender]").val([empData.gender]);
+            $("#dept_update_select").val([empData.dId]);
+        }
+    });
+}
+
 // 查出所有部门信息并显示在下拉列表中
 function getDepts(ele) {
     //清空之前下拉列表的值
@@ -86,7 +102,7 @@ function getDepts(ele) {
 }
 
 //上传表单
-function post_emp_form(){
+function post_emp_form() {
     //模态框中填写的表单数据提交给服务器进行保存
     $.ajax({
         url: "emp",
@@ -101,7 +117,7 @@ function post_emp_form(){
                 toPage(totalRecord);
             }
             //后端校验失败, 有哪个字段的错误信息，就显示哪个字段
-            if(result.extend.errorFields != undefined){
+            if (result.extend.errorFields != undefined) {
                 if (result.extend.errorFields.email != undefined) {
                     show_validate_msg("#email_add_input", "error", result.extend.errorFields.email);
                 }
@@ -109,7 +125,7 @@ function post_emp_form(){
                     show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
                 }
             }
-            if(result.extend.va_msg != undefined){
+            if (result.extend.va_msg != undefined) {
                 show_validate_msg("#empName_add_input", "error", result.extend.va_msg);
                 $("#emp_save_btn").attr("ajax-va", "error");
             }
