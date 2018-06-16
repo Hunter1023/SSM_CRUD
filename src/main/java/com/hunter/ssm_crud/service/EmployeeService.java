@@ -8,4 +8,6 @@ public interface EmployeeService {
     PageInfo<Employee> getAll(Integer pageNum);
 
     void saveEmp(Employee employee);
+
+    boolean checkUser(String empName);
 }

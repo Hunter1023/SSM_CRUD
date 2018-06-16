@@ -13,12 +13,14 @@
                         <label class="col-sm-3 control-label">姓名</label>
                         <div class="col-sm-9">
                             <input type="text" name="empName" class="form-control" id="empName_add_input" placeholder="姓名">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">邮箱</label>
                         <div class="col-sm-9">
                             <input type="text" name="email" class="form-control" id="email_add_input" placeholder="email@gmail.com">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,8 +38,7 @@
                         <label class="col-sm-3 control-label">部门</label>
                         <div class="col-sm-9">
                             <%--部门信息 提交部门id即可--%>
-                            <select class="form-control" name="dId" id="dept__add_select"></select>
-                            </select>
+                            <select class="form-control" name="dId" id="dept_add_select"></select>
                         </div>
                     </div>
                 </form>

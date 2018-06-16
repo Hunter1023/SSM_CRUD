@@ -18,14 +18,14 @@ public class Message {
     public static Message success() {
         Message result = new Message();
 //        result.setCode(100);
-        result.setMessage("处理成功！");
+        result.setMessage("success");
         return result;
     }
 
     public static Message fail() {
         Message result = new Message();
 //        result.setCode(200);
-        result.setMessage("处理失败！");
+        result.setMessage("error");
         return result;
     }
 

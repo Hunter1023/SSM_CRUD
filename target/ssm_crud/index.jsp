@@ -46,5 +46,6 @@
 </body>
 <script type="text/javascript" src="${APP_PATH}/js/emps.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/paging.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/validate-form.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/index.js"></script>
 </html>

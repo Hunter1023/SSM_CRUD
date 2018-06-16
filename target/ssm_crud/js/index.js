@@ -24,6 +24,8 @@ function toPage(pageNum) {
 
 // 添加新增按钮的鼠标监听
 $("#emp_add_modal_btn").click(function () {
+    //清除表单数据（表单重置） jQuery没有reset方法，DOM对象才有，因此取出DOM对象[0]
+    $("#empAddModal form")[0].reset();
     //发出ajax请求，查出部门信息，显示在下拉列表中
     getDepts();
     //弹出模态框
@@ -33,23 +35,38 @@ $("#emp_add_modal_btn").click(function () {
 // 查出所有部门信息并显示在下拉列表中
 function getDepts() {
     $.ajax({
-        url: "${APP_PATH}/depts",
+        url: "depts",
         type: "GET",
         success: function (result) {
             //在下拉列表中显示部门信息
             $.each(result.extend.depts, function () {
-                var optionEle = $("<option ></option>")
+                var optionEle = $("<option></option>")
                     .append(this.deptName).attr("value", this.deptId);
-                optionEle.appendTo("#dept__add_select");
+                optionEle.appendTo("#dept_add_select");
             })
         }
     });
 }
 
+$("#empName_add_input").keyup(function () {
+    validate_empName("#empName_add_input");
+});
+
 $("#emp_save_btn").click(function () {
+
+    //判断“用户名是否已被使用”的校验是否成功
+    if ($(this).attr("ajax-va") == "error") {
+        return false;
+    }
+
+    //校验输入的数据
+    if (!validate_add_form()) {
+        return false;
+    }
+
     //模态框中填写的表单数据提交给服务器进行保存
     $.ajax({
-        url: "${APP_PATH}/emp",
+        url: "emp",
         type: "POST",
         data: $("#empAddModal form").serialize(),
         success: function (result) {
