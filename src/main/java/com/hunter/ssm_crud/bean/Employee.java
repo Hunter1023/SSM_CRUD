@@ -1,12 +1,18 @@
 package com.hunter.ssm_crud.bean;
 
+import javax.validation.constraints.Pattern;
+
 public class Employee {
     private Integer empId;
 
+    @Pattern(regexp = "^([a-zA-Z0-9_-]{6,16})|(^[\u4e00-\u9fa5]{2,5})$",
+            message = "姓名必须为6-16位数字和字母的组合 或 2-5位中文")
     private String empName;
 
     private String gender;
 
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$",
+    message = "邮箱格式不正确")
     private String email;
 
     private Integer dId;

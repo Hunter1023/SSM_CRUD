@@ -67,14 +67,14 @@ $("#empName_add_input").keyup(function () {
 
 $("#emp_save_btn").click(function () {
     //判断“用户名是否已被使用”的校验是否成功
-    if ($(this).attr("ajax-va") == "error") {
-        return false;
-    }
+    // if ($(this).attr("ajax-va") == "error") {
+    //     return false;
+    // }
 
-    //校验输入的数据
-    if (!validate_add_form()) {
-        return false;
-    }
+    //前端校验输入的数据
+    // if (!validate_add_form()) {
+    //     return false;
+    // }
 
     //模态框中填写的表单数据提交给服务器进行保存
     $.ajax({
@@ -82,11 +82,26 @@ $("#emp_save_btn").click(function () {
         type: "POST",
         data: $("#empAddModal form").serialize(),
         success: function (result) {
-            // alert(result.message);
-            //员工保存成功后，关闭模态框
-            $('#empAddModal').modal('hide');
-            // 将总记录数作为请求页码（mybatisConfig.xml中配置了相关属性，能保证获取最后一页信息）
-            toPage(totalRecord);
+            //后端校验成功
+            if (result.message == "success") {
+                //员工保存成功后，关闭模态框
+                $('#empAddModal').modal('hide');
+                // 将总记录数作为请求页码（mybatisConfig.xml中配置了相关属性，能保证获取最后一页信息）
+                toPage(totalRecord);
+            }
+            //后端校验失败, 有哪个字段的错误信息，就显示哪个字段
+            if(result.extend.errorFields != undefined){
+                if (result.extend.errorFields.email != undefined) {
+                    show_validate_msg("#email_add_input", "error", result.extend.errorFields.email);
+                }
+                if (result.extend.errorFields.empName != undefined) {
+                    show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
+                }
+            }
+            if(result.extend.va_msg != undefined){
+                show_validate_msg("#empName_add_input", "error", result.extend.va_msg);
+                $("#emp_save_btn").attr("ajax-va", "error");
+            }
         }
     });
 });

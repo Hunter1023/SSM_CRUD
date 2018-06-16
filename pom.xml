@@ -71,6 +71,15 @@
             <version>5.1.4</version>
         </dependency>
 
+        <!--数据校验-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.1.Final</version>
+        </dependency>
+
+
+
         <!--返回JSON数据-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

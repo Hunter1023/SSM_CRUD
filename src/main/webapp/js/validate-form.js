@@ -48,7 +48,7 @@ function validate_empName(ele) {
         type: "POST",
         success: function (result) {
             if (result.message == "success"){
-                show_validate_msg(ele, "success", result.extend.va_msg);
+                show_validate_msg(ele, "success", "该姓名可用");
                 $("#emp_save_btn").attr("ajax-va", "success");
             }else if(result.message == "error"){
                 show_validate_msg(ele, "error", result.extend.va_msg);
@@ -56,6 +56,5 @@ function validate_empName(ele) {
             }
         }
     });
+
 }
-
-

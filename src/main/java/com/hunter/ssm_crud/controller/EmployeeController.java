@@ -5,9 +5,15 @@ import com.hunter.ssm_crud.bean.Employee;
 import com.hunter.ssm_crud.bean.Message;
 import com.hunter.ssm_crud.service.EmployeeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 处理员工CRUD请求
@@ -43,7 +49,26 @@ public class EmployeeController {
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     // 由于表单传输的标签内容，标签的name都和Employee的属性名相同，因此参数可以直接传对象
     @ResponseBody
-    public Message saveEmp(Employee employee) {
+    public Message saveEmp(@Valid Employee employee,
+                           BindingResult result) {
+        //校验失败
+        if (result.hasErrors()) {
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            List<FieldError> errors = result.getFieldErrors();
+            for (FieldError fieldError : errors) {
+                //错误的字段名 和 错误的信息
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            return Message.fail().add("errorFields", map);
+        }
+
+        //验证员工姓名
+        boolean usable = employeeService.checkUser(employee.getEmpName());
+        if(!usable){
+            return Message.fail().add("va_msg", "该姓名已被使用");
+        }
+
         employeeService.saveEmp(employee);
         return Message.success();
     }
@@ -59,7 +84,7 @@ public class EmployeeController {
     public Message checkUser(@RequestParam("empName") String empName) {
         //判断用户名是否合法
         String regx = "^([a-zA-Z0-9_-]{6,16})|(^[\u4e00-\u9fa5]{2,5})$";
-        if(!empName.matches(regx)){
+        if (!empName.matches(regx)) {
             return Message.fail().add("va_msg", "姓名必须为6-16位数字和字母的组合 或 2-5位中文");
         }
 
