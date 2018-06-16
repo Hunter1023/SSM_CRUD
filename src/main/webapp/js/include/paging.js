@@ -60,3 +60,19 @@ function build_page_nav(result) {
     var navEle = $("<nav></nav>").append(ul);
     navEle.appendTo("#page_nav_area");
 }
+
+function toPage(pageNum) {
+    $.ajax({
+        url: "emps",
+        data: "pageNum=" + pageNum,
+        type: "GET",
+        success: function (result) {
+            //1.解析并显示员工数据
+            build_emps_table(result);
+            //2.解析并显示分页信息（并将总记录数赋给totalRecord）
+            build_page_info(result);
+            //3.解析并显示分页条数据
+            build_page_nav(result);
+        }
+    });
+}

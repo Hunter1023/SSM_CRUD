@@ -9,9 +9,9 @@ function build_emps_table(result) {
         var genderTd = $("<td></td>").append(item.gender == "M" ? "男" : "女");
         var emailTd = $("<td></td>").append(item.email);
         var deptNameTd = $("<td></td>").append(item.department.deptName);
-        var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm")
+        var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
-        var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm")
+        var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
         var btnTd = $("<td></td>").append(editBtn).append(delBtn);
         $("<tr></tr>").append(empIdTd).append(empNameTd)

@@ -2,7 +2,7 @@ package com.hunter.ssm_crud.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.hunter.ssm_crud.bean.Employee;
-import com.hunter.ssm_crud.bean.Message;
+import com.hunter.ssm_crud.utils.Message;
 import com.hunter.ssm_crud.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

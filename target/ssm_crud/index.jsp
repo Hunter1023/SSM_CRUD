@@ -6,7 +6,8 @@
 </head>
 <body>
 <%--添加模态框--%>
-<%@include file="jsp/include/modal.jsp" %>
+<%@include file="jsp/include/modal/add_modal.jsp" %>
+<%@include file="jsp/include/modal/update_modal.jsp"%>
 
 <%--搭建显示页面--%>
 <div class="container">
@@ -44,8 +45,5 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="${APP_PATH}/js/emps.js"></script>
-<script type="text/javascript" src="${APP_PATH}/js/paging.js"></script>
-<script type="text/javascript" src="${APP_PATH}/js/validate-form.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/index.js"></script>
 </html>

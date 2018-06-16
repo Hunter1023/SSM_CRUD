@@ -1,7 +1,7 @@
 package com.hunter.ssm_crud.controller;
 
 import com.hunter.ssm_crud.bean.Department;
-import com.hunter.ssm_crud.bean.Message;
+import com.hunter.ssm_crud.utils.Message;
 import com.hunter.ssm_crud.service.DepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

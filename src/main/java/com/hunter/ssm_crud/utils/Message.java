@@ -1,4 +1,4 @@
-package com.hunter.ssm_crud.bean;
+package com.hunter.ssm_crud.utils;
 
 import java.util.HashMap;
 import java.util.Map;
