@@ -16,6 +16,8 @@ function build_emps_table(result) {
 
         var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
+        delBtn.attr("del-id", item.empId);
+
         var btnTd = $("<td></td>").append(editBtn).append(delBtn);
         $("<tr></tr>").append(empIdTd).append(empNameTd)
             .append(genderTd).append(emailTd).append(deptNameTd)

@@ -132,3 +132,31 @@ function post_emp_form() {
         }
     });
 }
+
+function update_emp_form() {
+    //发送ajax请求，保存更新的员工数据
+    $.ajax({
+        url: "emp/" + $("#emp_update_btn").attr("edit-id"),
+        type: "PUT",
+        data: $("#empUpdateModal form").serialize(),
+        success: function () {
+            //员工更新成功后，关闭模态框
+            $("#empUpdateModal").modal('hide');
+            //回到本页面
+            to_page(currentPage);
+        }
+    });
+}
+
+function delete_emp(empId) {
+    //确认，发送ajax删除请求
+    $.ajax({
+        url:"emp/" + empId,
+        type: "DELETE",
+        success: function () {
+            alert("删除成功");
+            //回到本页
+            to_page(currentPage);
+        }
+    });
+}

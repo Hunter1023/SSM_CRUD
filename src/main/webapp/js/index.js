@@ -39,6 +39,16 @@ $(document).on("click", ".edit_btn", function () {
     $("#empUpdateModal").modal();
 });
 
+//添加主页面 所有 单独删除按钮 的鼠标监听,
+$(document).on("click", ".delete_btn", function () {
+    //弹出 确认 是否删除 对话框
+    var empName = $(this).parents("tr").find("td:eq(1)").text();
+    var empId = $(this).attr("del-id");
+    if (confirm("确认删除【" + empName + "】？")) {
+        delete_emp(empId);
+    }
+});
+
 
 //添加模态框 姓名输入 的键盘监听
 $("#empName_add_input").keyup(function () {
@@ -74,16 +84,6 @@ $("#emp_update_btn").click(function () {
     }
 
     //更新表单数据
-    //发送ajax请求，保存更新的员工数据
-    $.ajax({
-        url: "emp/" + $("#emp_update_btn").attr("edit-id"),
-        type: "PUT",
-        data: $("#empUpdateModal form").serialize(),
-        success: function (result) {
-            //员工更新成功后，关闭模态框
-            $('#empUpdateModal').modal('hide');
-            //回到本页面
-            to_page(currentPage);
-        }
-    });
+    update_emp_form();
+
 });

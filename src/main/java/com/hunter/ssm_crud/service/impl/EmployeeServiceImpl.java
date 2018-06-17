@@ -73,4 +73,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         //根据主键有选择地更新
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
+
+    /**
+     * 删除员工
+     */
+    @Override
+    public void deleteEmp(Integer id) {
+        employeeMapper.deleteByPrimaryKey(id);
+    }
 }

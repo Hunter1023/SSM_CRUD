@@ -74,7 +74,21 @@ public class EmployeeController {
     }
 
     /**
+     * 删除员工
+     */
+
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Message deleteEmpById(@PathVariable("id") Integer id) {
+        employeeService.deleteEmp(id);
+
+        return Message.success();
+    }
+
+
+    /**
      * 更新员工信息
+     *
      * @param employee 传入的员工对象
      * @return 成功信息
      */
