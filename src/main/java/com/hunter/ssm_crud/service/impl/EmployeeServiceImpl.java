@@ -23,7 +23,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public PageInfo<Employee> getAll(Integer pageNum) {
         //设置分页
         PageHelper.startPage(pageNum, 5);
-        List<Employee> emps = employeeMapper.selectByExampleWithDept(null);
+        EmployeeExample example = new EmployeeExample();
+        //设置按员工id排序，否则会默认先 按照 关联的部门id排序；再按照员工id排序
+        example.setOrderByClause("emp_id");
+        List<Employee> emps = employeeMapper.selectByExampleWithDept(example);
 
         return new PageInfo<Employee>(emps, 5);
     }
@@ -35,7 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public Employee getEmp(Integer id) {
-
         return employeeMapper.selectByPrimaryKey(id);
     }
 

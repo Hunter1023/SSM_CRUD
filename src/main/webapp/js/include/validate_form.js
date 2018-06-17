@@ -113,7 +113,7 @@ function post_emp_form() {
                 //员工保存成功后，关闭模态框
                 $('#empAddModal').modal('hide');
                 // 将总记录数作为请求页码（mybatisConfig.xml中配置了相关属性，能保证获取最后一页信息）
-                toPage(totalRecord);
+                to_page(totalRecord);
             }
             //后端校验失败, 有哪个字段的错误信息，就显示哪个字段
             if (result.extend.errorFields != undefined) {
