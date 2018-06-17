@@ -65,4 +65,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return count == 0;
     }
 
+    /**
+     * 员工更新
+     */
+    @Override
+    public void updateEmp(Employee employee) {
+        //根据主键有选择地更新
+        employeeMapper.updateByPrimaryKeySelective(employee);
+    }
 }

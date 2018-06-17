@@ -31,7 +31,10 @@ $(document).on("click", ".edit_btn", function () {
     //根据id加载员工信息
     getEmp($(this).attr("edit-id"));
 
-    //弹出模态框
+    //将员工id传递给模态框的更新按钮
+    $("#emp_update_btn").attr("edit-id", $(this).attr("edit-id"));
+
+    // 弹出模态框
     $("#empUpdateModal").modal();
 });
 
@@ -70,5 +73,13 @@ $("#emp_update_btn").click(function () {
     }
 
     //发送ajax请求，保存更新的员工数据
+    $.ajax({
+        url: "emp/" + $(this).attr("edit-id"),
+        type: "POST",
+        data: $("#empUpdateModal form").serialize() + "&_method=PUT",
+        success: function (result) {
+            alert(result.message);
+        }
+    })
 
 });

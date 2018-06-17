@@ -40,14 +40,6 @@ public class EmployeeController {
         return Message.success().add("pageInfo", pageInfo);
     }
 
-    @RequestMapping(value="/emp/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Message getEmp(@PathVariable("id") Integer id){
-        Employee employee = employeeService.getEmp(id);
-
-        return Message.success().add("emp", employee);
-    }
-
     /**
      * 添加员工
      *
@@ -73,13 +65,42 @@ public class EmployeeController {
 
         //验证员工姓名
         boolean usable = employeeService.checkUser(employee.getEmpName());
-        if(!usable){
+        if (!usable) {
             return Message.fail().add("va_msg", "该姓名已被使用");
         }
 
         employeeService.saveEmp(employee);
         return Message.success();
     }
+
+    /**
+     * 更新员工信息
+     * @param employee 传入的员工对象
+     * @return 成功信息
+     */
+    //占位符{empId}和 传入的对象中的 变量名相同时，才会作为对象的属性传入
+    @RequestMapping(value = "/emp/{empId}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Message updateEmp(Employee employee) {
+        employeeService.updateEmp(employee);
+
+        return Message.success();
+    }
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id 员工id
+     * @return 员工信息
+     */
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Message getEmp(@PathVariable("id") Integer id) {
+        Employee employee = employeeService.getEmp(id);
+
+        return Message.success().add("emp", employee);
+    }
+
 
     /**
      * ajax后端表单校验
