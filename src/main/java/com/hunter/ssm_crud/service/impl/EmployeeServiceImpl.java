@@ -10,6 +10,7 @@ import com.hunter.ssm_crud.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -75,10 +76,29 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     * 删除员工
+     * 删除单个员工
      */
     @Override
     public void deleteEmp(Integer id) {
         employeeMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 批量删除员工
+     */
+    @Override
+    public void deleteBatch(String ids) {
+        List<Integer> del_ids = new ArrayList<Integer>();
+        String[] str_ids = ids.split("-");
+        //组装id的集合
+        for (String string : str_ids){
+            del_ids.add(Integer.parseInt(string));
+        }
+
+        EmployeeExample example = new EmployeeExample();
+        Criteria criteria = example.createCriteria();
+        //delete from xxx where emp_id in(...)
+        criteria.andEmpIdIn(del_ids);
+        employeeMapper.deleteByExample(example);
     }
 }

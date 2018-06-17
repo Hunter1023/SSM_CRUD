@@ -69,7 +69,6 @@ function reset_form(ele) {
 
 //查询员工信息显示在模态框中
 function getEmp(id) {
-
     $.ajax({
         url: "emp/" + id,
         type: "GET",
@@ -101,7 +100,7 @@ function getDepts(ele) {
     });
 }
 
-//上传表单
+//上传 新增员工 表单
 function post_emp_form() {
     //模态框中填写的表单数据提交给服务器进行保存
     $.ajax({
@@ -133,8 +132,8 @@ function post_emp_form() {
     });
 }
 
+//上传 更新员工 表单
 function update_emp_form() {
-    //发送ajax请求，保存更新的员工数据
     $.ajax({
         url: "emp/" + $("#emp_update_btn").attr("edit-id"),
         type: "PUT",
@@ -148,6 +147,7 @@ function update_emp_form() {
     });
 }
 
+// 发送 删除员工请求
 function delete_emp(empId) {
     //确认，发送ajax删除请求
     $.ajax({
@@ -156,6 +156,17 @@ function delete_emp(empId) {
         success: function () {
             alert("删除成功");
             //回到本页
+            to_page(currentPage);
+        }
+    });
+}
+// 发送批量删除员工请求
+function delete_emps(del_idstr){
+    $.ajax({
+        url: "emp/" + del_idstr,
+        type: "DELETE",
+        success: function () {
+            alert("删除成功");
             to_page(currentPage);
         }
     });

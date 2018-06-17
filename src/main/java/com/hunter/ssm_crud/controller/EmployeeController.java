@@ -74,13 +74,19 @@ public class EmployeeController {
     }
 
     /**
-     * 删除员工
+     * 删除员工（单个删除、批量删除都处理）
      */
 
     @RequestMapping(value = "/emp/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Message deleteEmpById(@PathVariable("id") Integer id) {
-        employeeService.deleteEmp(id);
+    public Message deleteEmpById(@PathVariable("id") String ids) {
+
+        if (ids.contains("-")) {//批量删除
+            employeeService.deleteBatch(ids);
+        } else {//单个删除
+            Integer id = Integer.parseInt(ids);
+            employeeService.deleteEmp(id);
+        }
 
         return Message.success();
     }

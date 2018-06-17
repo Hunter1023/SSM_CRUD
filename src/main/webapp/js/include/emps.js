@@ -4,6 +4,7 @@ function build_emps_table(result) {
     $("#emps_table tbody").empty();
     var emps = result.extend.pageInfo.list;
     $.each(emps, function (index, item) {
+        var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
         var empIdTd = $("<td></td>").append(item.empId);
         var empNameTd = $("<td></td>").append(item.empName);
         var genderTd = $("<td></td>").append(item.gender == "M" ? "男" : "女");
@@ -19,7 +20,7 @@ function build_emps_table(result) {
         delBtn.attr("del-id", item.empId);
 
         var btnTd = $("<td></td>").append(editBtn).append(delBtn);
-        $("<tr></tr>").append(empIdTd).append(empNameTd)
+        $("<tr></tr>").append(checkBoxTd).append(empIdTd).append(empNameTd)
             .append(genderTd).append(emailTd).append(deptNameTd)
             .append(btnTd).appendTo("#emps_table tbody");
     });

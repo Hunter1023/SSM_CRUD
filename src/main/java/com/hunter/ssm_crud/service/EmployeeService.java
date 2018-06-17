@@ -3,6 +3,8 @@ package com.hunter.ssm_crud.service;
 import com.github.pagehelper.PageInfo;
 import com.hunter.ssm_crud.bean.Employee;
 
+import java.util.List;
+
 public interface EmployeeService {
 
     PageInfo<Employee> getAll(Integer pageNum);
@@ -16,4 +18,6 @@ public interface EmployeeService {
     void updateEmp(Employee employee);
 
     void deleteEmp(Integer id);
+
+    void deleteBatch(String ids);
 }
