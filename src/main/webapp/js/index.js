@@ -5,12 +5,13 @@ document.write("<script type='text/javascript' src='js/include/paging.js'></scri
 //引入校验表单数据的方法
 document.write("<script type='text/javascript' src='js/include/validate_form.js'></script>");
 
-//创建总记录数
-var totalRecord;
+//创建总记录数，当前页码
+var totalRecord, currentPage;
+
 
 // 1.页面加载完成以后，直接去发送一个AJAX请求，要到分页数据
 $(function () {
-    toPage(1);
+    to_page(1);
 });
 
 // 添加主页面新增按钮的鼠标监听
@@ -72,14 +73,17 @@ $("#emp_update_btn").click(function () {
         show_validate_msg("#email_update_input", "success", "");
     }
 
+    //更新表单数据
     //发送ajax请求，保存更新的员工数据
     $.ajax({
-        url: "emp/" + $(this).attr("edit-id"),
-        type: "POST",
-        data: $("#empUpdateModal form").serialize() + "&_method=PUT",
+        url: "emp/" + $("#emp_update_btn").attr("edit-id"),
+        type: "PUT",
+        data: $("#empUpdateModal form").serialize(),
         success: function (result) {
-            alert(result.message);
+            //员工更新成功后，关闭模态框
+            $('#empUpdateModal').modal('hide');
+            //回到本页面
+            to_page(currentPage);
         }
-    })
-
+    });
 });
